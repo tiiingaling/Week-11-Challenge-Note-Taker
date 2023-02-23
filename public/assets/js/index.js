@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -25,13 +27,14 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
-const getNotes = () =>
-  fetch('/api/notes', {
+const getNotes = () => 
+  fetch('/notes.html', {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'text/html',
     },
   });
+
 
 const saveNote = (note) =>
   fetch('/api/notes', {
