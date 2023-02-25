@@ -29,16 +29,15 @@ const getNotes = () =>
   fetch('/notes', {
     method: 'GET',
     headers: {
-      'Content-Type': 'text/html',
+      'Content-Type': 'application/json',
     },
   });
 
-
-const saveNote = (note) =>
+  const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
     headers: {
-      'Content-Type': 'text/html',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
   });
@@ -50,6 +49,7 @@ const deleteNote = (id) =>
       'Content-Type': 'application/json',
     },
   });
+
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);

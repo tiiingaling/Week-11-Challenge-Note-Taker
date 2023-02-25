@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
+const uuid = require('uuid');
 
 const app = express();
 
@@ -15,13 +16,19 @@ app.get('/notes', (req, res) => {
 
 // Route for GET *
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
+    res.setHeader('Content-Type', 'text/html');
+    readFromFile('./public/index.html').then((data) => res.send(data));
+  });
+  
 
 // API routes
-app.get('/', (req, res) => {
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+app.get('/api/notes', (req, res) => {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      if (err) throw err;
+  
+      const notes = JSON.parse(data);
+      res.json(notes);
+    });
   });
 
   // POST /api/notes
