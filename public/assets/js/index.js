@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -28,7 +26,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () => 
-  fetch('/notes.html', {
+  fetch('/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'text/html',
@@ -40,7 +38,7 @@ const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'text/html',
     },
     body: JSON.stringify(note),
   });
