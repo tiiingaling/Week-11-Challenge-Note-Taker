@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
-const path = require('path');
-const PORT = 3000;
+
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
+
+const PORT = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the public folder
 app.use(express.static('public'));
@@ -13,6 +17,6 @@ app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
 // Start the server
-app.listen(PORT, () => 
-    console.log(`Server started at http://localhost:${PORT}`)
+app.listen(PORT, () =>
+  console.log(`Server started at http://localhost:${PORT}`)
 );
