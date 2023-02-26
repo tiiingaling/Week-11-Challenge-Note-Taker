@@ -34,4 +34,4 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 ![Screenshot showing the new saved note](./assets/saved.png)
 
 ## Deployed Link
-ç
+https://vast-shelf-36759.herokuapp.com/
